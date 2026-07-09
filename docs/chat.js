@@ -107,12 +107,41 @@ async function askQuestion() {
 
 document.getElementById("ask").addEventListener("click", askQuestion);
 
-document.getElementById("question").addEventListener("keydown", (event) => {
+const questionInput = document.getElementById("question");
+
+let isComposing = false;
+let justComposed = false;
+
+questionInput.addEventListener("compositionstart", () => {
+  isComposing = true;
+});
+
+questionInput.addEventListener("compositionend", () => {
+  isComposing = false;
+  justComposed = true;
+
+  setTimeout(() => {
+    justComposed = false;
+  }, 100);
+});
+
+questionInput.addEventListener("keydown", (event) => {
+  const composing =
+    isComposing ||
+    event.isComposing ||
+    event.keyCode === 229 ||
+    justComposed;
+
+  if (composing) {
+    return;
+  }
+
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
     askQuestion();
   }
 });
+
 
 document.getElementById("clear").addEventListener("click", () => {
   messages = [];
