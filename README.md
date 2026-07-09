@@ -10,3 +10,9 @@
 * Lecture  9: 電弱過程
 * Lecture 10: 核物質と状態方程式
 
+
+## Hands-on notebooks
+
+| Topic | Notebook | Open in Colab |
+|---|---|---|
+| 核子-核子散乱 | [`nn_scattering.ipynb`](notebooks/nn_scattering.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Takayuki-Miyagi/Lecture_Hokkaido/blob/main/notebooks/nn_scattering.ipynb) |
