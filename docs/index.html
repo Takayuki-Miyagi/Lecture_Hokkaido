@@ -15,34 +15,29 @@
       }
     };
   </script>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <main>
-    <h1>講義 チャットボット</h1>
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>講義内容チャットボット</h1>
+        <p>講義内容について質問できます．</p>
+      </div>
+      <button id="clear">Clear</button>
+    </header>
 
-    <p>
-    このチャットボットは講義内容に基づいて回答します．
-    </p>
+    <main id="chat-log" class="chat-log"></main>
 
-    <section id="chat">
+    <footer class="composer">
       <textarea
         id="question"
-        rows="5"
-        placeholder="講義内容について質問してください"
+        rows="1"
+        placeholder="講義内容について質問してください。Shift+Enterで改行。"
       ></textarea>
-
-      <br />
-
-      <button id="ask">Ask</button>
-      <button id="clear">Clear history</button>
-
-      <div id="chat-log"></div>
-    </section>
-  </main>
+      <button id="ask">Send</button>
+    </footer>
+  </div>
 
   <script src="./chat.js"></script>
 </body>

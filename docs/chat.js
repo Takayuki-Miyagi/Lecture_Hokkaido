@@ -1,13 +1,15 @@
 const API_URL = "https://lecture-chatbot-backend.vercel.app/api/chat";
 const STORAGE_KEY = "lecture-chatbot-history";
 
+let messages = loadMessages();
+
 function normalizeMathDelimiters(text) {
   return text
     .replace(/^\s*\[\s*$/gm, "\\[")
     .replace(/^\s*\]\s*$/gm, "\\]");
 }
 
-function loadHistory() {
+function loadMessages() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [];
   } catch {
@@ -15,32 +17,35 @@ function loadHistory() {
   }
 }
 
-function saveHistory(history) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+function saveMessages() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
 }
 
-function renderHistory() {
+function renderMessages() {
   const chatLog = document.getElementById("chat-log");
-  const history = loadHistory();
-
   chatLog.innerHTML = "";
 
-  for (const item of history) {
-    const block = document.createElement("div");
-    block.className = "chat-message";
+  for (const message of messages) {
+    const bubble = document.createElement("div");
+    bubble.className = `message ${message.role}`;
 
-    const q = document.createElement("div");
-    q.className = "chat-question";
-    q.textContent = item.question;
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = message.role === "user" ? "You" : "AI";
 
-    const a = document.createElement("div");
-    a.className = "chat-answer";
-    a.textContent = normalizeMathDelimiters(item.answer);
+    const content = document.createElement("div");
+    content.className = "content";
+    content.textContent =
+      message.role === "assistant"
+        ? normalizeMathDelimiters(message.content)
+        : message.content;
 
-    block.appendChild(q);
-    block.appendChild(a);
-    chatLog.appendChild(block);
+    bubble.appendChild(avatar);
+    bubble.appendChild(content);
+    chatLog.appendChild(bubble);
   }
+
+  chatLog.scrollTop = chatLog.scrollHeight;
 
   if (window.MathJax) {
     window.MathJax.typesetPromise([chatLog]);
@@ -48,61 +53,71 @@ function renderHistory() {
 }
 
 async function askQuestion() {
-  const questionBox = document.getElementById("question");
-  const question = questionBox.value.trim();
+  const input = document.getElementById("question");
+  const question = input.value.trim();
 
-  if (!question) {
-    return;
-  }
+  if (!question) return;
 
-  const history = loadHistory();
-
-  history.push({
-    question,
-    answer: "Thinking...",
-    time: new Date().toISOString(),
+  messages.push({
+    role: "user",
+    content: question,
   });
-  saveHistory(history);
-  renderHistory();
 
-  questionBox.value = "";
+  messages.push({
+    role: "assistant",
+    content: "Thinking...",
+  });
+
+  input.value = "";
+  saveMessages();
+  renderMessages();
 
   try {
+    const messagesForApi = messages
+      .filter((m) => m.content !== "Thinking...")
+      .slice(-12);
+
     const res = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message: question }),
+      body: JSON.stringify({ messages: messagesForApi }),
     });
 
     const data = await res.json();
 
-    history[history.length - 1].answer =
-      res.ok ? data.answer : data.error ?? "Error";
+    messages[messages.length - 1] = {
+      role: "assistant",
+      content: res.ok ? data.answer : data.error ?? "Error",
+    };
 
-    saveHistory(history);
-    renderHistory();
+    saveMessages();
+    renderMessages();
   } catch {
-    history[history.length - 1].answer =
-      "Failed to connect to the chatbot backend.";
+    messages[messages.length - 1] = {
+      role: "assistant",
+      content: "Failed to connect to the chatbot backend.",
+    };
 
-    saveHistory(history);
-    renderHistory();
+    saveMessages();
+    renderMessages();
   }
 }
 
 document.getElementById("ask").addEventListener("click", askQuestion);
 
 document.getElementById("question").addEventListener("keydown", (event) => {
-  if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
     askQuestion();
   }
 });
 
 document.getElementById("clear").addEventListener("click", () => {
-  localStorage.removeItem(STORAGE_KEY);
-  renderHistory();
+  messages = [];
+  saveMessages();
+  renderMessages();
 });
 
-renderHistory();
+renderMessages();
