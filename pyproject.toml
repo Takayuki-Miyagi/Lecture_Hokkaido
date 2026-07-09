@@ -1,0 +1,19 @@
+[project]
+name = "lecture-hands-on"
+version = "0.1.0"
+description = "Hands-on code for the lecture"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+    "scipy",
+    "matplotlib",
+    "pandas",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"

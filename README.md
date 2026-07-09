@@ -16,3 +16,6 @@
 | Topic | Notebook | Open in Colab |
 |---|---|---|
 | 核子-核子散乱 | [`nn_scattering.ipynb`](notebooks/nn_scattering.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Takayuki-Miyagi/Lecture_Hokkaido/blob/main/notebooks/nn_scattering.ipynb) |
+
+## チャットボット
+講義内容を質問するのに使ってください[`chatbot`](https://takayuki-miyagi.github.io/Lecture_Hokkaido/)
