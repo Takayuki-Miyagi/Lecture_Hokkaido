@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>Lecture Chatbot</title>
+  <link rel="stylesheet" href="./style.css" />
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+        processEscapes: true,
+        processEnvironments: true
+      }
+    };
+  </script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+  <main>
+    <h1>講義 チャットボット</h1>
+
+    <p>
+    このチャットボットは講義内容に基づいて回答します．
+    </p>
+
+    <section id="chat">
+      <textarea
+        id="question"
+        rows="5"
+        placeholder="講義内容について質問してください"
+      ></textarea>
+
+      <br />
+
+      <button id="ask">Ask</button>
+      <button id="clear">Clear history</button>
+
+      <div id="chat-log"></div>
+    </section>
+  </main>
+
+  <script src="./chat.js"></script>
+</body>
+</html>
