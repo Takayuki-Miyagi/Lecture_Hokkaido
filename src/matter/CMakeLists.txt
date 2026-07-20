@@ -18,6 +18,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   include_directories("/opt/homebrew/opt/libomp/include")
 endif()
 include_directories(src)
+find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(GSL REQUIRED)
 find_package(OpenMP REQUIRED)
 
@@ -43,6 +44,7 @@ set(MAIN_SOURCES
 add_executable(imsrg_matter.exe ${MAIN_SOURCES})
 target_link_libraries(
   imsrg_matter.exe
+  Eigen3::Eigen
   GSL::gsl
   OpenMP::OpenMP_CXX
-  )
+)
