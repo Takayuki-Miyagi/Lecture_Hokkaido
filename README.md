@@ -17,6 +17,7 @@
 |---|---|---|
 | 核子-核子散乱 | [`nn_scattering.ipynb`](notebooks/nn_scattering.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Takayuki-Miyagi/Lecture_Hokkaido/blob/main/notebooks/nn_scattering.ipynb) |
 | 平均場近似と多体摂動論 | [`HartreeFock.ipynb`](notebooks/HartreeFock.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Takayuki-Miyagi/Lecture_Hokkaido/blob/main/notebooks/HartreeFock.ipynb) |
+| 核物質| [`nuclear_matter.ipynb`](notebooks/nuclear_matter.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Takayuki-Miyagi/Lecture_Hokkaido/blob/main/notebooks/nuclear_matter.ipynb) |
 
 ## チャットボット
 講義内容を質問するのに使ってください[`chatbot`](https://takayuki-miyagi.github.io/Lecture_Hokkaido/)
