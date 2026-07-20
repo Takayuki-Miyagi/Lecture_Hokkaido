@@ -10,6 +10,8 @@
 * Lecture  9: 電弱過程
 * Lecture 10: 核物質と状態方程式
 
+## 事前アンケート
+[`事前アンケートリンク`](https://docs.google.com/forms/d/e/1FAIpQLSdPNCQJTNMXTYXikPYc5GvLzeTdlUyK8HPAUhB0_MRIVuJD5Q/viewform?usp=dialog)
 
 ## Hands-on notebooks
 
