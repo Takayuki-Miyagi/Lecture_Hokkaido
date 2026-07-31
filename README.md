@@ -13,6 +13,9 @@
 ## 事前アンケート
 [`事前アンケートリンク`](https://docs.google.com/forms/d/e/1FAIpQLSdPNCQJTNMXTYXikPYc5GvLzeTdlUyK8HPAUhB0_MRIVuJD5Q/viewform?usp=dialog)
 
+## 事後アンケート
+[`事後アンケートリンク`](https://docs.google.com/forms/d/e/1FAIpQLSeJ_0Xb0NvUGWa7wZ3vD0rryfHNS2u7pU8FJDDo09J4WWDAgg/viewform?usp=publish-editor)
+
 ## Hands-on notebooks
 
 | Topic | Notebook | Open in Colab |
